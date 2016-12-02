@@ -1,0 +1,90 @@
+z5075018
+
+15/9/16, 9:00-10:00 (am start),
+finally read the spec (been busy)
+
+15/9/16, various hours,
+played around with subset 0. as per tutor's recommendation, andrew's initial template doesn't support any form of recursive syntax / combination of syntax blocks very well. will try the recursive descent parse method.
+
+15/9/16, ~4:30-7:00 (pm start),
+converted andrew's code into something modularised (though it's looking pretty disgusting and complicated). hopefully this is useful future-proofing. need to study for elec2142 exam. (side-note: opening a file, and seeking byte pos probably better approach than loading it all into an array)
+
+20/9/16, various hours,
+rewriting code (AGAIN) in recommended perl style from tutorials. benefit: substantially cleaner than the method i was doing before (too C-like) = much stronger base to work off.
+
+21/9/16, ~2:00-5:00 (pm start),
+wrote up most of the set0 code. handles simple cases fine.
+
+21/9/16, 5:00-9:00 (pm start),
+half-procrastinating because tired. probably halfway through set1 (untested). went overtime testing for perl -> python differences in numeric constants.
+
+21/9/16, 10:30-11:30 (pm start),
+finished writing up set 1? no. need to add more features to print().
+
+22/9/16, various hours (am, pm),
+finished writing up set 1. obviously there are cases it can't handle as mentioned in comments in my code (these are due to character escaping and etc.). if i get time i will try to revisit them (they're not hard to fix, but they take lots of time to write; also their occurrence is probably pretty rare for "real-world" programs).
+
+22/9/16, various hours (pm),
+did some testing for set 1. fixed character escaping. onto set 2...
+
+22/9/16, 12am,
+can't sleep so started contemplating about set 2. added leading whitespace handling, formulated some ideas, etc.
+
+23/9/16, various hours (am, pm),
+did some restructuring for consistency + implementation of the remaining operators in set 2. need to test. (then do control flow (basically identical idea to print)). then do custom, leading whitespace.
+
+23/9/16, various hours (pm),
+implementation of "<=>" requiring lots of restructuring. need to test it all works tomorrow.
+
+24/9/16, various hours (am, pm),
+bug fixes for numbers, still only halfway through testing the operators. formatting is a killer. program still doesn't handle grouping as of yet.
+
+24/9/16, various hours (pm),
+fixed various nuances of operators. WHY IS THIS TAKING SO LONG?
+
+25/9/16, various hours (am),
+spent ages doing if statements, not because they are tricky, but because there are so many formatting issues.
+
+25/9/16, various hours (pm),
+working on c-style for loops which don't exist in python so i'm assuming you have to convert it to an equivalent while loop.
+
+25/9/16, (pm),
+code needs lots of reworking if it wants to handle grouping... you would have to rework it into every function individually (can't just be slapped into translateLine)
+
+25/9/16, (super late pm),
+stole ideas from elec2142 and put them in here to fix "<=>" operator. structure of code not the best: not really a very good implementation of a recursive descent parser. would redo if i had time (i don't). would have had a better initial design if i understood it better (i didn't).
+
+25/9/16, (am),
+bug fix to grouping (needed to consider "<=>" operator), added "last" and "next". design for "<=>" not very good but not sure how to improve on it without significant reworking (which i already did all of yesterday) / not going from left to right only.
+
+25/9/16, (am-pm),
+still basically on set 2?? had to implement string comparisons just to be safe, since for some reason set 3 requires them, even though it's not specified we need them in the spec. fixed bug with spacing (need to follow my own 'rules' more carefully).
+
+26/9/16, (pm),
+STDIN needs more functionality (basically everything needs more functionality). needs to handle "while ($line = <STDIN>)" properly, since it doesn't translate to a while loop in python.
+
+need to be stricter with numeric formatting because it's too lenient right now so ".." doesn't work. wonder if it's easier to do it char by char (or sections of regex) as follows:
+    (no need to grab initial signs anymore)
+    1. grab leading digit or decimal place
+    3. grab letters and words up to "e" or up to "." (depends on if we grabbed a decimal place earlier)
+    4. repeat for "e" onwards
+
+    regex to go into the function can argubly be more lenient than the actual grabbing, if you want to save time that way.
+
+not sure how to do typecasting (don't have time either). also note, not mentioned in set as something we explicitly need to do - not really a whinge, more a concern towards the spec being too open-ended. wouldn't care if i had more time to do it.
+
+current implementation proving more and more to not be a recursive descent parser. would take the compilers course in the future, but not sure i have enough electives to do so.
+
+27/9/16, (all day),
+implemented remainder of set 3 (taking some shortcuts for some things).
+
+also, don't have anymore time currently to work on this assignment, so i will have to stop here for now. (have other subjects i need to attend to unfortunately)
+
+no idea how to deal with typecasting issue. maybe: do a second scan through, identify left and right operators of a variable (out of all known variables, stored in a set). only need to do this when we encounter an assignment in the joined code. however, this doesn't handle grouping very well. however, do we even need to consider grouping in this assignment (spec doesn't say). however, could just do a naive implementation.
+
+IF TIME PERMITS: 1st agendas:
+    1. fix array element indexing (not really important)
+    2. keep coding other stuff (push, pop, printf, maybe "." <- probably easiest ones to start with)
+
+28/9/16, (am),
+finished writing demoes and tests to hand in. (there are more tests on my gitlab if you are interested). can't spend any more time on this assignment for the time being, so don't be surprised if diary entry ends here...

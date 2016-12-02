@@ -1,0 +1,26 @@
+set0_0           numeric constants (actually for set 1)
+set1_0           complicated print statements, variables
+set1_1           arithmetic operation
+
+set2_0           simple test of all operators (26 kinds)
+set2_1           control flow (if statements)
+set2_2           control flow (for loop)
+set2_3(manual)   control flow (foreach loop, no arrays)
+set2_4/5         "<=>"
+set2_6           control flow (break, continue)
+
+...             <STDIN> (no idea what "more complex print" is)
+...             test "chomp" in "examples" (it's all python can handle anyway)
+
+set3_0          string comparisons
+set3_1          one more string comparison "cmp"
+set3_2(manual)  simple <STDIN>
+set3_3          simple prefix, postfix inc / dec
+set3_4(manual)  very simple ".." operator (can't be tested to perl due to arrays)
+set3_5(manual)  simple exit (python exit has a lot more functionality...)
+set3_6(manual)  @ARGV (or @{ARGV}) implemented but not array element
+set3_7(manual)  print formats
+set3_8(manual)  $#
+set3_9          split join
+
+...             chomp, split, join, ARGV, exit

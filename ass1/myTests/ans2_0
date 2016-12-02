@@ -1,0 +1,49 @@
+=========SET2_0=========
+***(part 1 of tests)
+7
+7
+11
+-3
+2.7142857142857144
+5
+16384
+28
+***(part 1.5 of tests)
+11
+-3
+2.7142857142857144
+5
+16384
+28
+***(part 2 of tests)
+0
+1
+0
+3
+False
+True
+0
+1
+False
+True
+***(part 3 of tests)
+True
+False
+False
+True
+True
+False
+False
+True
+-1
+1
+True
+False
+True
+***(part 4 of tests)
+3
+0
+-1
+1
+8
+4
