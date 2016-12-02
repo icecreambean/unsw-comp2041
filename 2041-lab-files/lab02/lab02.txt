@@ -1,0 +1,293 @@
+== Question 1: Searching a Dictionary with Less == 
+
+a) What word is on line 2000 
+
+Less keystrokes: 2000G
+Word: Algonquian
+
+b) the first word in the dictionary file containing z
+
+Less keystrokes: /^z
+Word: z
+
+c) the last word in the dictionary that contains the substring ooz ?
+
+Less keystrokes: G?ooz$
+Word: trooz
+
+
+== Question 2: Applying  Unix Tools to a Dictionary == (egrep cat wc)
+
+a) How many total words does the file contain?  
+
+Command: wc -w words.txt
+Answer: 390588
+
+b) How many total words, excluding those ending in "'s", are there in the dictionary?
+
+Pipeline: egrep -v "'s" words.txt | wc -w    (be careful of Unicode single quotes: ‘’)
+Answer: 299845
+
+c) How could you use cat -n and grep to find out which word is on line 100000? 
+
+Note: if you want the 100000th word (stripping the first empty line in the file), it
+would be: grep . words.txt | cat -n | grep '100000'
+
+Pipeline: cat -n words.txt | grep '100000'
+Answer: adviser
+
+d) How could you use cat -n and grep to print the 700th line, and no other lines?
+
+Old working attempts: 
+cat -n words.txt | grep '^ *700[^0-9]'
+cat -n words.txt | grep '^ *700\t’
+Note ‘^ *700’ is required to indicate that the first 3 digits are 700.
+
+Pipeline: cat -n words.txt | grep '^ *700\s'
+Answer: Adirondack
+
+
+e) How do you use head and tail to find out what word is on line 200000 
+
+
+Pipeline: head -200000 words.txt | tail -1
+Answer: geodynamics's
+
+== Question 3: Finding Unusual Words With Regular Expressions == 
+
+a) which words contain the characters "lmn" consecutively?
+
+Pipeline: egrep 'lmn' words.txt
+Answer:
+Selmner
+Selmner's
+almner
+almners
+calmness
+calmness's
+calmnesses
+
+b) how many words contain "zz", but do not end in apostrophe-s ('s)?
+
+One consideration: egrep -v "'s" words.txt | egrep 'zz' | wc -w
+Alternative: negative lookahead assertion?? (Might be the same thing)
+Tutor says: grep: matches one char at a time, with no context known of preceding or
+following characters, hence, a limitation of regexp.
+
+Pipeline: egrep -v "'s" words.txt | egrep 'zz' | wc -w
+Answer: 628
+
+c) how many words contain four consecutive vowels?
+
+Pipeline: egrep -i '[aeiou]{4}' words.txt | wc -w
+Answer: 207
+
+d) which English words contain all 5 english vowels "aeiou" in that order? 
+Note: egrep 'a[^aeiou]*e[^aeiou]*i[^aeiou]*o[^aeiou]*u' words.txt   (too specific)
+
+Pipeline: egrep -i ‘a.*e.*i.*o.*u’ words.txt
+
+e) how many English words contain all 5 english vowels "aeiou" in that order? 
+
+Pipeline: egrep -i 'a.*e.*i.*o.*u' words.txt | wc -w
+Answer: 53
+
+f) Challenge which English words contain exactly 5 vowels and the vowels are "aeiou" in that order? 
+
+Pipeline: egrep '^[^aeiou]*a[^aeiou]*e[^aeiou]*i[^aeiou]*o[^aeiou]*u[^aeiou]*$' words.txt
+Answer:
+abstemious
+abstemiously
+abstentious
+arsenious
+caesious
+facetious
+facetiously
+
+g) How many 10+ letter lower case words which contain a 9 character lower-case word.
+
+Generate the words9 file (a-z characters only): egrep '^[a-z]{9}$' words.txt > words9.txt
+Number of words in generated file: wc -w words9.txt       = 36148
+Hint is to use fgrep. (optimised by use of a trie?)
+(Note to self: 9 letter words in words9.txt, 10+ letter words in words10p.txt)
+(Answer list in ans3g.txt)
+
+Pipeline: 
+egrep -v "'s" words.txt | egrep -v '[A-Z]' | egrep '[a-z]{10,}' | fgrep -f words9.txt | wc -w
+Answer: 30120
+
+== Question 4: egreping MPs == 
+
+a) Write an egrep command that will print all the lines in the file where the electorate begins with W.
+
+Pipeline: egrep 'Member for W' parliament.txt
+
+b) Write an egrep command that will list all the lines in the file where the MP's first name is Andrew. 
+
+Possibly insecure if Andrew is a middle name: egrep ' Andrew ' parliament.txt
+So include the title first, so could do: cut -d' ' -f1 parliament.txt | sort | uniq -c
+Dr, Hon, Mr, Mrs, Ms, The   (‘The’ should be ‘The Hon’, hence ‘The’ is ignorable)
+
+Pipeline: egrep -i '(Dr|Hon|Mr) Andrew ' parliament.txt
+
+c) Write an egrep command that will print all the lines in the file where the MP's surname (last name) ends in the letter 'y'.
+
+Actually wrong: egrep -i 'y:' parliament.txt   (there are title suffixes as well, e.g. AO)
+The suffix titles are completely capitalised, try non-case sensitive regex.
+
+Correct solution is actually: egrep 'y: |y [A-Z]+:' parliament.txt    (non case sensitive)
+The lab solution is missing: 
+“The Hon Dr Mike Kelly AM: Member for Eden-Monaro, New South Wales”
+
+Pipeline: egrep 'y:' parliament.txt    (for lab solution)
+
+d) Write an egrep command that will print all the lines in the file where the last name and electorate ends in the letter 'y'.
+
+Alt: egrep '(y: |y [A-Z]+:).*y,' parliament.txt    (see above notes)
+
+Pipeline: egrep 'y:.*y,' parliament.txt    (for lab solution)
+
+e) Write an egrep command that will print all the lines in the file where the last name or electorate ends in the letter 'y'.
+
+Alt: egrep '(y: |y [A-Z]+:)|y,' parliament.txt
+
+Pipeline: egrep 'y:|y,' parliament.txt   (for lab result)
+
+f) Write an egrep command to print all the lines in the file where there is a word in the MP's name or the electorate name ending in ng.
+
+Pipeline: egrep -i '[a-z]*ng[ :,]' parliament.txt
+
+g) Write an egrep command that will print all the lines in the file where the MP's surname (last name) both begins and ends with a vowel. 
+
+This solution (below) exploits case formatting in the surname to differentiate to the
+suffix title.
+
+Pipeline: egrep ' [AEIOU][A-Za-z]*[aeiou]( [A-Z]+)?:' parliament.txt
+
+h) Write an egrep command that will print all the lines in the file where the electorate name contains multiple words (separated by spaces or hyphens). 
+
+Pipeline: egrep -i 'Member for [a-z]+([- ][a-z]+)+,' parliament.txt
+Answer: (as provided in the lab)
+
+== Question 5: Pipelining MPs == 
+
+a) Write a shell pipeline which prints the 8 Australians states & territory
+in order of the number of MPs they have. 
+
+Pipeline: cut -d, -f2 parliament.txt | cut -c2- | sort | uniq -c | sort -n | cut -c6-
+
+b) Challenge: write a shell pipeline which prints the 2nd most common MP first name. 
+
+Multistep process:
+cut -d':' -f1 parliament.txt | sort      (giving the names sorted by title)
+(Grep each title category, cut out the title, and cut again to extract their first names)
+(Then merge all the separate files back together using cat)
+(Then sort by first name, then uniq -c | sort -nr | head -1, then recut as required.
+
+Alt multistage:
+Instead of each title, cut out (by field) the first word. Fewer remaining entries (or so) still have a title inside them (Dr x1, Hon x3).
+
+One line answer: use sed as a replacement for tr (since tr is limited to char by char).
+Titles: Dr, Hon, Mr, Mrs, Ms, The
+https://www.digitalocean.com/community/tutorials/the-basics-of-using-the-sed-stream-editor-to-manipulate-text-in-linux
+
+Pipeline:
+sed -E 's/((Dr|Hon|Mr|Mrs|Ms|The) )*//' parliament.txt | cut -d' ' -f1 | sort | uniq -c | sort -nr | cut -c6- | head -2 | tail -1
+Answer: Tony
+
+== Question 6: Counting Classes ==
+
+a) How many total classes are there?
+
+(wc -l counts number of newlines there are; not very good)
+(Count the number of class codes)
+(cut default delimiter is \t, or use tr to replace \t for some other printable delimiter)
+
+Command: cut -f2 classes.txt | wc -w
+(Answer): 314
+
+b) How many different courses have classes?
+
+Pipeline: cut -f1 classes.txt | sort | uniq | wc -w
+(Answer): 36
+
+
+c) Write a pipeline which will print the course with the most classes?
+
+Pipeline: cut -f1 classes.txt | sort | uniq -c | sort -nr | head -1
+(Answer): 29 ENGG1811
+
+d) Give a command line that prints the most frequently-used tut room? 
+
+Pipeline: egrep 'TUT|TLB' classes.txt | cut -f5 | sort | uniq -c | sort -nr | head -1
+(Answer): 13 Quad G041
+
+e) Give a command line that prints the most popular time-of-day for tutes? 
+(I assume this means the most popular time PERIOD (start-finish) out of all days).
+
+Pipeline: 
+egrep 'TUT|TLB' classes.txt | cut -f4 | cut -d' ' -f2 | sort | uniq -c | sort -nr | head -1
+(Answer): 25 12-13
+
+f)  Challenge: which COMP courses run the most simultaneous classes of the same type?
+(Same time AND day)
+
+Alt: egrep 'COMP' classes.txt | cut -f1,3,4 | sort -k3 | sort -k1 | uniq -c | sort -nr
+(Since the list is already ordered both alphabetically and by course time, the sorts
+aren’t really necessary).
+
+Pipeline: egrep 'COMP' classes.txt | cut -f1,3,4 | uniq -c | sort -nr
+
+(Answer):
+   3 COMP9041   TLB     Thu 18-19
+   3 COMP2041   TLB     Thu 18-19
+   3 COMP1927   TLB     Tue 12-13
+
+g) Challenge: write a pipeline that prints list of the course names (only) of COMP courses that run (2 or more) simultaneous classes of the same type?
+
+Pipeline:
+egrep 'COMP' classes.txt | cut -f1,3,4 | uniq -c | sort -nr | egrep '^\s*([2-9]|[1-9][0-9]+)' | cut -f1 | cut -c6- | sort | uniq
+
+== Question 7: Challenge - Interesting Regexps ==
+
+a) Match any line containing at least one A and at least one B.
+
+Regexp: '(A+.*B+)|(B+.*A+)'    (note: those brackets are unnecessary)
+
+b) Match any line any line containing only the characters A and B such that all pairs of adjacent As occur before any pairs of adjacent Bs
+
+Allowable: stream of As or/then Bs only, ..ABAA.. => ..ABA.., ABB(A? or Bs) => BB(A?), 
+Using grep’s -v flag, would simply require the opposite regex which is: BB.*AA
+What about: Loop all valid combos from start of string to end.
+4 letter combos: 
+     AAAA, AAAB, AABA, AABB, ABAA, ABAB, ABBA, ABBB, 
+     BAAA, BAAB, BABA, BABB, BBAA, BBAB, BBBA, BBBB
+If comparing all the way to end, also need to think of 3,2, and 1 letter endings.
+Consider a finite state machine?
+
+From ideas in (c): anchor your result to force “non-greedy” evaluation.
+Idea: from start, match to first BB, then match at most single A’s (or more B’s) till end
+
+Regexp: '^(AB?)*(B?|BB(AB|B)*A?)$'
+
+c) Match any line containing  only the characters A and B such that all number of A's is divisible by 4.
+
+Nearly there?: '^B+$|((A[^A]*){4})'     + something extra
+
+IMPORTANT: to force an evaluation through the entire string and not just the ‘lowest
+common denominator’, need to anchor to ‘end of string’ using $.
+
+Regexp: '^B*((AB*){4})*$'
+
+d) Match any line containing n As followed by n Bs and no other characters..
+
+ftp://ftp.psu.ac.th/pub/bash-howto/reference_bash-cheat.pdf
+http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-7.html
+
+Capturing regex values and storing them in variables (up to 9 available (see \1)):
+http://stackoverflow.com/questions/8696751/add-space-between-every-letter
+http://stackoverflow.com/questions/4609949/what-does-1-in-sed-do
+
+Regexp/script:
+
+

@@ -1,0 +1,8 @@
+COMP1011|3360379|Costner, Kevin                   |3978/1|M
+COMP1011|3364562|Carey, Mary                      |3711/1|M
+COMP3311|3383025|Thorpe, Ian                      |3978/3|M
+COMP2920|3860448|Steenburgen, Mary                |3978/3|F
+COMP1021|3360582|Neeson, Liam                     |3711/1|M
+COMP3411|3860538|Klum, Heidi                      |3978/3|F
+COMP3141|3383025|Thorpe, Ian                      |3978/3|M
+COMP3891|3860544|Klum, Heidi                      |3978/3|F

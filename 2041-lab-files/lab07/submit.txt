@@ -1,0 +1,56 @@
+wagner % ls
+count_word.pl  frequency.pl  identify_poet.pl  log_probability.pl  total_words.pl
+wagner % ~cs2041/bin/autotest lab07
+Test total_words_0 (-a -W	"./total_words.pl <poem/Elizabeth_Barrett_Browning.txt") - passed
+Test total_words_1 (-a -W	"./total_words.pl <poem/Emily_Dickinson.txt") - passed
+Test total_words_2 (-a -W	"./total_words.pl <poem/John_Keats.txt") - passed
+Test total_words_3 (-a -W	"./total_words.pl <poem/Percy_Bysshe_Shelley.txt") - passed
+Test total_words_4 (-a -W	"./total_words.pl <poem/Robert_Frost.txt") - passed
+Test total_words_5 (-a -W	"./total_words.pl <poem/Samuel_Taylor_Coleridge.txt") - passed
+Test total_words_6 (-a -W	"./total_words.pl <poem/Walt_Whitman.txt") - passed
+Test total_words_7 (-a -W	"./total_words.pl <poem/William_Blake.txt") - passed
+Test total_words_8 (-a -W	"./total_words.pl <poem/William_Butler_Yeats.txt") - passed
+Test total_words_9 (-a -W	"./total_words.pl <poem/William_Wordsworth.txt") - passed
+Test count_word_0 (-a -W	"./count_word.pl death <poem/Elizabeth_Barrett_Browning.txt") - passed
+Test count_word_1 (-a -W	"./count_word.pl love <poem/Emily_Dickinson.txt") - passed
+Test count_word_2 (-a -W	"./count_word.pl urn <poem/John_Keats.txt") - passed
+Test count_word_3 (-a -W	"./count_word.pl mighty <poem/Percy_Bysshe_Shelley.txt") - passed
+Test count_word_4 (-a -W	"./count_word.pl path <poem/Robert_Frost.txt") - passed
+Test count_word_5 (-a -W	"./count_word.pl ship <poem/Samuel_Taylor_Coleridge.txt") - passed
+Test count_word_6 (-a -W	"./count_word.pl man <poem/Walt_Whitman.txt") - passed
+Test count_word_7 (-a -W	"./count_word.pl England <poem/William_Blake.txt") - passed
+Test count_word_8 (-a -W	"./count_word.pl world <poem/William_Butler_Yeats.txt") - passed
+Test count_word_9 (-a -W	"./count_word.pl flower <poem/William_Wordsworth.txt") - passed
+Test frequency_0 (-a -W	"./frequency.pl death") - passed
+Test frequency_1 (-a -W	"./frequency.pl love") - passed
+Test frequency_2 (-a -W	"./frequency.pl urn") - passed
+Test frequency_3 (-a -W	"./frequency.pl mighty") - passed
+Test frequency_4 (-a -W	"./frequency.pl path") - passed
+Test frequency_5 (-a -W	"./frequency.pl ship") - passed
+Test frequency_6 (-a -W	"./frequency.pl man") - passed
+Test frequency_7 (-a -W	"./frequency.pl England") - passed
+Test frequency_8 (-a -W	"./frequency.pl world") - passed
+Test frequency_9 (-a -W	"./frequency.pl flower") - passed
+Test log_probability_0 (-a -W	"./log_probability.pl death") - passed
+Test log_probability_1 (-a -W	"./log_probability.pl love") - passed
+Test log_probability_2 (-a -W	"./log_probability.pl urn") - passed
+Test log_probability_3 (-a -W	"./log_probability.pl mighty") - passed
+Test log_probability_4 (-a -W	"./log_probability.pl path") - passed
+Test log_probability_5 (-a -W	"./log_probability.pl ship") - passed
+Test log_probability_6 (-a -W	"./log_probability.pl man") - passed
+Test log_probability_7 (-a -W	"./log_probability.pl England") - passed
+Test log_probability_8 (-a -W	"./log_probability.pl world") - passed
+Test log_probability_9 (-a -W	"./log_probability.pl flower") - passed
+Test identify_poet_1 (-a -W	"./identify_poet.pl poem1.txt") - passed
+Test identify_poet_2 (-a -W	"./identify_poet.pl poem2.txt") - passed
+Test identify_poet_3 (-a -W	"./identify_poet.pl poem3.txt") - passed
+Test identify_poet_4 (-a -W	"./identify_poet.pl poem4.txt") - passed
+Test identify_poet_5 (-a -W	"./identify_poet.pl poem5.txt") - passed
+Test identify_poet_6 (-a -W	"./identify_poet.pl poem6.txt") - passed
+Test identify_poet_all (-a -W	"./identify_poet.pl poem?.txt") - passed
+total_words.py not found
+count_word.py not found
+frequency.py not found
+log_probability.py not found
+identify_poet.py not found
+47 tests passed  0 tests failed  47 tests could not be run

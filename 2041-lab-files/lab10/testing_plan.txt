@@ -1,0 +1,17 @@
+Systematic testing:
+
+1. Homepage: press "Close".
+2. Homepage: enter value and press "Reset".
+3. Homepage: enter valid number and press "Validate".
+4. Homepage: enter invalid number (wrong length (too small / large)) and press "Validate".
+5. Homepage: enter invalid number (wrong by the formula) and press "Validate".
+6. Valid screen: repeat all above options (5).
+7. Invalid screen: repeat all above options (5).
+
+8. Check if input sanitised (at least one test per text field).
+
+Note: mine is implemented with POST rather than with GET.
+
+
+0000000000000000
+2389423423423467

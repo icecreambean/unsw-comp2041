@@ -1,0 +1,18 @@
+.myCustomText {
+    color: green;
+	background-color: white;
+	border: 1px solid red;
+	text-indent: 100px;
+	padding-bottom:  10px;
+}
+
+.myCustomButton {
+	background-color: #abffff;
+	border: thin solid #287653;
+}
+
+input[type=textfield] {
+	background-color: white;
+	color: red;
+	padding: 5px 5px;
+}
