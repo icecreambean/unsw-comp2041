@@ -1,0 +1,15 @@
+{% extends "py_base.html" %}
+
+{% block page_contents %}
+    {% if success %}
+    <div class="alert alert-success" role="alert">
+        <strong>Yay! Your message has been submitted.</strong><br>
+        If you would like to view the thread again, hit 'Back' in your browser and then refresh the page.
+    </div>
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Oh no! Your message could not be submitted.</strong><br>
+        Your message field is empty. Please hit 'Back' in your browser, fill in the message field correctly, and try resubmitting.
+    </div>
+    {% endif %}
+{% endblock %}

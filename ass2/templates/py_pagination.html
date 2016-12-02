@@ -1,0 +1,36 @@
+{#
+    generic pagination header:
+    JINJA PARAMETERS:
+        pagination_cur_no, pagination_total: (display features)
+        page_params: dict of (name, value) for parameters to placed in the url
+        pagination_parameter_name:
+            (variable name within cgi parameters, for the
+             page number you want to go to for this pagination segment)
+        error_log_pagination
+#}
+    <div class="row">
+        <div class="col-md-9">
+            <p>
+              <i>You are currently at: Page {{ pagination_cur_no }} of {{ pagination_total }}.</i>
+              {% if error_log_pagination %}
+              <br><span class="warning-text">{{ error_log_pagination }}</span></p>
+              {% endif %}
+            </p>
+        </div>
+        <div class="col-md-3">
+            <form method="get">
+            {# preserve page parameters #}
+            {% for name, val in page_params.items() %}
+            <input type="hidden" name="{{ name }}" value="{{ val }}">
+            {% endfor %}
+            <div class="input-group">
+                <!-- textfield -->
+                <input type="text" class="form-control" placeholder="Page No.?" name="{{ pagination_parameter_name }}">
+                <!-- submit button -->
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+            </form>
+        </div>
+    </div>

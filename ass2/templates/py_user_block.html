@@ -1,0 +1,50 @@
+{# http://getbootstrap.com/components/#media
+   http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-media-objects.php
+#}
+        <div class="media row-backing">
+          <!-- profile image -->
+          <div class="media-left">
+           <a href="matelook.cgi?page=Search~{{ user_zid }}">
+               <img class="media-object" src="{{ user_img }}" alt="Profile Image" width="{{ img_size }}">
+           </a>
+          </div>
+          <div class="media-body">
+              <div class="media-heading">
+                <code>{{ user_zid }}</code>&nbsp;&nbsp;
+                <b><a href="matelook.cgi?page=Search~{{ user_zid }}">{{ user_full_name }}</a></b><br>
+                <small><i>{{ user_tag }}</i></small>
+              </div>
+              {#
+                dynamic content, just pass this in as a coded html string
+                (easiest approach?) argubly bad mvc style though...
+              #}
+              {{ user_contents }}
+
+              {% if cur_message_id %}
+              {#
+                note terminology: new_post (in user_page, no message_id
+                association required) vs. new_message
+                PARAMETERS: page, cur_message_id (hidden)
+                RETURN VALUES: page (deprecated: always 'Message_Submit'),
+                               cur_message_id, new_message
+              #}
+              <form method="post" action="matelook.cgi?page={{ page }}">
+              <input type="hidden" name="cur_message_id" value="{{ cur_message_id }}">
+              <div class="input-group">
+                <!-- textfield -->
+                <input type="text" class="form-control" placeholder="Start a discussion!" name="new_message">
+                <!-- submit button -->
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default">Comment</button>
+                </span>
+              </div><!-- /input-group -->
+              </form>
+              {% endif %}
+
+              {# nested message chain here: #}
+              {% if nested_code %}
+                {# e.g. for nested media tags #}
+                {{ nested_code}}
+              {% endif %}
+          </div>
+        </div>

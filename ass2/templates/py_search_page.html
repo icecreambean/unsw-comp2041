@@ -1,0 +1,70 @@
+{% extends "py_base.html" %}
+
+{% block page_contents %}
+    {# http://getbootstrap.com/components/#input-groups-buttons #}
+    {# textfield and radio buttons (zid / name / post sub-string) #}
+    <hr>
+    <h3 class="text-center">Search:</h3>
+    <div class="row">
+        <!-- user feedback if search fails -->
+        {% if error_log %}
+        <p><span class="warning-text">{{ error_log }}</span></p>
+        {% endif %}
+    </div>
+    <div class="row">
+      <form method="get">
+      <!-- submit type -->
+      <div class="col-md-2">
+        <!-- page select on form submission -->
+        <input type="hidden" name="page" value="Search">
+        <!-- search_type: zID, Name -->
+        <h5>Search by:</h5>
+
+        {# deprecate this old style for the below bootstrap version
+        &nbsp;&nbsp;&nbsp;
+        <input type="radio" name="search_type" value="zID"> zID<br>
+        &nbsp;&nbsp;&nbsp;
+        <input type="radio" name="search_type" value="Name"> Name<br>
+        &nbsp;&nbsp;&nbsp;
+        <input type="radio" name="search_type" value="Post"> Post<br>
+        #}
+        <div class="radio">
+          <label>
+            <input type="radio" name="search_type" value="zID">zID
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="search_type" value="Name">Name
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="search_type" value="Post">Post
+          </label>
+        </div>
+
+      </div>
+        <!-- textfield and button grouped together -->
+      <div class="col-md-10">
+        <br><!-- artificial padding -->
+        <div class="input-group">
+          <!-- textfield -->
+          <input type="text" class="form-control" placeholder="Search for some text..." name="search_string">
+          <!-- submit button -->
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">Search</button>
+          </span>
+        </div><!-- /input-group -->
+        <br>
+        <p><b>Tip:</b> "post" searches that run across multiple lines require a space to be inserted between each new line.</p>
+      </div><!-- /.col-lg-6 -->
+
+      </form>
+    </div><!-- /.row -->
+    <hr>
+    <h3 class="text-center">Search Results:</h3>
+    <p>{{ search_message }}</p>
+    {{ pagination_header }}
+    {{ search_results }}
+{% endblock %}

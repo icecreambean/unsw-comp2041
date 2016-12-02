@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>matelook</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/custom_matelook.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+      <div class="container">
+
+        <div class="row row-backing">
+          <div class="col-md-2">
+              <img src="../dataset-medium/z3275760/profile.jpg" alt="Profile Image" width="120px">
+          </div>
+          <div class="col-md-10">
+              <!-- just pass these args in as strings -->
+              <div class="row">
+                  {{ user_header }}
+              </div>
+              <div class="row">
+                  {{ user_contents }}
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+  </body>
+</html>

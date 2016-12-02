@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>matelook</title>
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="assets/css/bootstrap.css.map" rel="stylesheet">-->
+    <link href="assets/css/custom_matelook.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- inside a container to easily call "row" -->
+    <div class="container">
+      <!-- header -->
+      <div class="header clearfix">
+        <nav class="pull-right">
+            {# DEPRECATE FOR HTML LINKS INSTEAD
+            <form method="get">
+            <input type="submit" class="btn btn-link" name="page" value="Home">
+            <input type="submit" class="btn btn-link" name="page" value="Profile">
+            <input type="submit" class="btn btn-link" name="page" value="Search">
+            {% if not disable_logout_feature %}
+            <input type="submit" class="btn btn-link" name="page" value="Logout">
+            {% endif %}
+            </form>
+            #}
+            <ul class="nav nav-pills">
+              <li role="presentation">
+                  <a href="matelook.cgi?page=Home">Home</a>
+              </li>
+              <li role="presentation">
+                  <a href="matelook.cgi?page=Profile">Profile</a>
+              </li>
+              <li role="presentation">
+                  <a href="matelook.cgi?page=Search">Search</a>
+              </li>
+              {% if not disable_logout_feature %}
+              <li role="presentation">
+                  <a href="matelook.cgi?page=Logout">Logout</a>
+              </li>
+              {% endif %}
+            </ul>
+        </nav>
+        <!-- title -->
+        <h3 class="text-muted">matelook</h3>
+      </div>
+
+      <!-- page contents -->
+      {% block page_contents %}
+
+      <div class="jumbotron">
+        <h1>Oops!</h1>
+        <p class="lead">Something went wrong. Please navigate to a different page.</p>
+      </div>
+      {% if error_log %}
+      <p><b>Error log:</b> {{ error_log }}</p>
+      {% endif %}
+      {% endblock %}
+      <!-- footer -->
+      <footer class="footer">
+        <hr>
+        <p>&copy; matelook</p>
+        {{ debug_contents if debug_contents != None }}
+      </footer>
+
+    </div>
+
+  </body>
+</html>

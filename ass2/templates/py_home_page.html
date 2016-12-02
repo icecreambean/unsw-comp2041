@@ -1,0 +1,9 @@
+{% extends "py_base.html" %}
+
+{% block page_contents %}
+    {# just passes in a string of multiple py_user_block, as already
+       pre-formatted within the matelook code
+    #}
+    {{ pagination_header }}
+    {{ multiple_user_blocks }}
+{% endblock %}

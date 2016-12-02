@@ -1,0 +1,37 @@
+/* custom for matelook */
+/*      code samples taken from:
+for row-backing:
+http://stackoverflow.com/questions/11738870/adding-background-color-and-padding-to-row-in-twitter-bootstrap
+for ul-col-3:
+http://stackoverflow.com/questions/14745297/how-to-display-an-unordered-list-in-two-columns
+for invisible-button:
+http://stackoverflow.com/questions/22672368/how-to-make-a-transparent-html-button
+*/
+
+/* used in user_block (if changing this, clear cache) */
+.row-backing {
+    padding: 5px;
+    background-color: #F7F7F7;
+    border: 1px solid #DDD;
+}
+
+/* used in displaying courses */
+.ul-col-3 {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+}
+
+/* not being used
+.invisible-button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+*/
+
+.warning-text {
+    color: orange;
+}

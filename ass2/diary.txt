@@ -1,0 +1,69 @@
+11/10: (1h)
+Read spec and formulated some ideas. Not sure I can do oop (need more practice with it) or database in the supplied timeframe
+
+12/10: (2-3h)
+Don't understand the usefulness of oop in the context of a page. Will need to investigate when I have time to do so.
+Started playing with css (open source kube from online resource) and jinja2. Probably still won't use a database given time constraint. Rebuilding a dictionary on every webpage load will slow my website down considerably though?
+
+13/10: (4h?)
+Started thinking about how to do stuff.
+Without converting the database to something else, probably easiest to load it all into a dict, and then process it that way, as opposed to opening and closing lots of files all the time.
+
+14/10: (am, 1.5h?)
+Finished loading the dataset - why'd it take so long T_T
+
+14/10: (a lot of time)
+Need to do posts and then some POST, and that will complete subset 0...
+Things to check:
+    test two funcs in dataset.py (for messages)
+    complete formatUserMessages (in matelook)
+    call formatUserMessages() from UserPage (in matelook)
+
+15/10: (a lot of time)
+Loading posts probably works
+Wrote my dict into a json file (would database but idk how and insufficient time to learn how)
+Onto implementing search (such that I can actually access other webpages)
+... spent 5h trying to write unicode out to server. Turns out you just need to use codec.getwriter(...)(...) and print(... , ...) to do it
+
+16/10: (am-pm: 4h)
+implemented search functionality
+fixed up some bugs
+fixed up init script
+todo: start on login (use cookies) (maybe not today... don't have time?)
+
+24/10: (some hours in pm)
+Handed in elec2133 assignment, so can now continue this assignment...
+Implemented cookies, so logging in and out works
+Started set 2... (the home page):
+    1. load posts, replies, comments, etc.
+    2. refine step 1 such that it searches through all messages in existence
+       scanning for any messages that the current zid user has posted
+    3. etc...
+
+25/10: (some hours in am, pm)
+Webpage hard to read so made use of media tags (bootstrap)
+Added some dataset functionality to do the first bit of subset 2 (homepage)
+
+26/10: (mostly pm)
+Finally fixed homepage (tuple bug: one element (str) in a tuple - on iteration through the tuple elements it breaks the string up into characters and iterates through the characters instead).
+The dfs is very slow so I’ve added a cap and a randomiser to the dfs instead (in dataset.py)
+Added tagging as well
+
+27/10: (am/pm)
+Performance testing: slow performance turns out to be due to rendering large amounts of html, huge amounts of calls for image resources. Hence, seriously need to work on pagination.
+Implemented posting
+
+28/10: (pm)
+Stuck doing elec2133 quiz the entire day. Implemented half of commenting.
+
+29/10: (pm)
+Implemented commenting. Security fixes (duplicate parameters, html page tampering, etc.).
+Starting pagination (might not finish?).
+
+30/10: (am, pm)
+Hacked together pagination in one day.
+Could be designed a bit better but that would require me to do more careful planning... and write a function with a bloated number of parameters....
+    * Not too sure how to do it properly, since there is a degree of customisation
+     required for it. Would definitely be a lot easier in oop.
+Bug fixes
+Chmod'd everything using 777 - probably not the best idea, but should be ok for demo purposes.

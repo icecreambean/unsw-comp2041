@@ -1,0 +1,29 @@
+{% extends "py_base.html" %}
+
+{% block page_contents %}
+
+    <div class="jumbotron">
+        <h1>Welcome to matelook</h1>
+        <!-- user feedback if login fails -->
+        {% if error_log %}
+        <p><span class="warning-text"><small>{{ error_log }}</small></span></p>
+        {% endif %}
+        {# below source: http://getbootstrap.com/css/#forms-example #}
+        {# NOTE: action="blah" is required for a POST request if the url
+        has GET variables embedded within it #}
+        <!-- login section (returns both GET and POST variables) -->
+        <p class="lead">Please sign in:</p>
+        <form method="post" action="matelook.cgi?page=Profile">
+        <div class="form-group">
+            <label for="zID">zID:</label>
+            <input type="text" class="form-control" name="login_zID" placeholder="zID (including leading 'z')" style="width: 40%;">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="login_password" placeholder="Password" style="width: 40%;">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Log Me In!</button>
+        </form>
+    </div>
+
+{% endblock %}

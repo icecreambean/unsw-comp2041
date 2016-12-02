@@ -1,0 +1,32 @@
+{% extends "py_base.html" %}
+
+{% block page_contents %}
+    {{ user_block }}
+    {# http://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp #}
+    {# for making new posts #}
+    {% if my_page %}
+    <hr>
+    {#<form method="post" action="matelook.cgi?page=Profile">#}
+    <form method="post" action="matelook.cgi?page=Message_Submit">
+    <div class="form-group">
+        {#<label for="new_post">Let's make a post!</label>#}
+        <textarea class="form-control" rows="5" id="new_post" name="new_post" placeholder="What would you like to share today?"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Make post!</button>
+    </form>
+    {% endif %}
+{#
+    <hr>
+    <h3 class="text-center">My Completed Courses:</h3>
+    {{ user_courses }}
+#}
+    <hr>
+    <h3 class="text-center">My Mates:</h3>
+    {{ pagination_header_user_mates }}
+    {{ user_mates }}
+    <hr>
+    <h3 class="text-center">My Posts:</h3>
+    {{ pagination_header_user_messages }}
+    {{ user_messages }}
+
+{% endblock %}
